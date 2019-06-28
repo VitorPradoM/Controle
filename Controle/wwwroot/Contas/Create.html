@@ -13,16 +13,23 @@
         <div>
             <label>Preço</label>
             <input type="text" id="preco" name="preco" value="">
-        </div>
-        <div div id="Caracteristica">
-            <label>Caracteristica</label>
-        </div>
+        </div>        
+            <div id="Caracteristica">
+            </div> 
         <div>
             <label>Data Vencimento</label>
             <input type="Date" id="data_vencimento" name="data_vencimento" value="">
         </div>
+        <div>
+            <label>Status Pagamento</label>
+            <select  id="StatusPagamento" name="StatusPagamento">
+                <option value="Pago">Pago</option>
+                <option value="Não Pago" selected>Não Pago</option>
+            </select>
+        </div>
 
-        <a onclick="finalizar()"> Finaliza</a>
+
+        <a onclick="finaliza()"> Finaliza</a>
     </form>
 </body>
 </html>

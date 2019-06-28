@@ -14,6 +14,8 @@
             valor += "<th>Descrição</th>";
             valor += "<th>Preço</th>";
             valor += "<th>Categoria</th>";
+            valor += "<th>Data Vencimento</th>";
+            valor += "<th>Status Pagamentos</th>";
             valor += "<th></th>";
             valor += "</tr>";
             valor += "</thead>";
@@ -23,7 +25,9 @@
                 valor += "<td>" + resultado[i].id + "</td>";
                 valor += "<td>" + resultado[i].descricao + "</td>";
                 valor += "<td>" + resultado[i].preco + "</td>";
-                valor += "<td>" + resultado[i].Categoria + "</td>";
+                valor += "<td>" + resultado[i].categorias_Id + "</td>";
+                valor += "<td>" + resultado[i].data_Vencimento + "</td>";
+                valor += "<td>" + resultado[i].status_Pagamento + "</td>";
                 valor += "<td><a onclick='chamaedit(" + resultado[i].id + ")'>Edit</td>";
                 valor += "</tr>";
             }

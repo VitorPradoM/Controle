@@ -20,5 +20,7 @@ namespace Controle.Models
 
         public string Data_Vencimento { get; set; }
 
+        public int Categorias_Id { get; set; }
+
     }
 }
