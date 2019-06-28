@@ -15,7 +15,10 @@ namespace Controle.Models
 
         [Display(Name = "Preço")]
         public float Preco { get; set; }
+      
+        public string Status_Pagamento { get; set; }
 
-       
+        public string Data_Vencimento { get; set; }
+
     }
 }

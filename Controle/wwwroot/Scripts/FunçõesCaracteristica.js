@@ -1,15 +1,17 @@
 ﻿function finalizar() {
+    var desc = $("#descricao").val();
    
 
     var categorias = {
-        descricao: $("#descricao").val()
+        Descricao: desc
     };
 
    
     $.ajax({
         type: "POST",
+        accepts: "application/json",
         url: "/api/Categorias",
-        data: categorias,
+        data: JSON.stringify(categorias),
         contentType: "application/json",
         success: function (resultado) {
 
