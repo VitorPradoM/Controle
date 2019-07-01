@@ -41,18 +41,79 @@ namespace Controle.Controllers
 
             return contas;
         }
-        // Esse aqui
-        [HttpPost("{contas}")]
-        public async Task<ActionResult<Contas>> Pequisa(string  descricao)
+        // Esse aqui queria  quero que ele aceita requisição do contajs função pesquisa
+        
+        [HttpPost("Pesquisa")]
+        public async Task<ActionResult<List<Contas>>> Pequisa(ContasViewModel contas)
         {
-            var valor = await _context.contas.Where(c => c.Descricao == descricao).ToListAsync();
-
-            if (descricao == null)
+            List<Contas> valor = new List<Contas>();
+            // Descrição Todas Opções
+            if (contas.Descricao != "" && contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento == "" && contas.Categorias_Id == "" )
             {
-                return NotFound();
+                valor = await _context.contas.Where(c => c.Descricao == contas.Descricao).ToListAsync();
+            }
+            else if (contas.Descricao != "" && contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento != "" && contas.Categorias_Id == "")
+            {
+               valor = await _context.contas.Where(c => c.Descricao == contas.Descricao && c.Status_Pagamento == contas.Status_Pagamento).ToListAsync();
+            }
+            else if (contas.Descricao != "" && contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento == "" && contas.Categorias_Id != "")
+            {
+                 valor = await _context.contas.Where(c => c.Descricao == contas.Descricao && c.Categorias_Id.ToString() == contas.Categorias_Id).ToListAsync();
+            }
+            else if (contas.Descricao != "" && !contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento == "" && contas.Categorias_Id == "")
+            {
+                 valor = await _context.contas.Where(c => c.Descricao == contas.Descricao && c.Data_Vencimento >= contas.Data_Inicio && c.Data_Vencimento <= contas.Data_Final).ToListAsync();
+            }
+            if (contas.Descricao != "" && contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento != "" && contas.Categorias_Id != "")
+            {
+                valor = await _context.contas.Where(c => c.Descricao == contas.Descricao && c.Status_Pagamento == contas.Status_Pagamento && c.Categorias_Id.ToString() == contas.Categorias_Id).ToListAsync();
+            }
+            if (contas.Descricao != "" && !contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento != "" && contas.Categorias_Id == "")
+            {
+                valor = await _context.contas.Where(c => c.Descricao == contas.Descricao && c.Status_Pagamento == contas.Status_Pagamento && c.Data_Vencimento >= contas.Data_Inicio && c.Data_Vencimento <= contas.Data_Final).ToListAsync();
+            }
+            if (contas.Descricao != "" && !contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento == "" && contas.Categorias_Id != "")
+            {
+                valor = await _context.contas.Where(c => c.Descricao == contas.Descricao && c.Status_Pagamento == contas.Status_Pagamento && c.Categorias_Id.ToString() == contas.Categorias_Id && c.Data_Vencimento <= contas.Data_Final).ToListAsync();
+            }
+            if (contas.Descricao != "" && !contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento == "" && contas.Categorias_Id != "")
+            {
+                valor = await _context.contas.Where(c => c.Descricao == contas.Descricao && c.Status_Pagamento == contas.Status_Pagamento && c.Categorias_Id.ToString() == contas.Categorias_Id && c.Data_Vencimento <= contas.Data_Final).ToListAsync();
+            }
+            if (contas.Descricao == "" && !contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento != "" && contas.Categorias_Id != "")
+            {
+                valor = await _context.contas.Where(c => c.Status_Pagamento == contas.Status_Pagamento && c.Categorias_Id.ToString() == contas.Categorias_Id && c.Data_Vencimento <= contas.Data_Final).ToListAsync();
+            }
+            // Categorias_ID  Opções
+            if (contas.Descricao == "" && contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento == "" && contas.Categorias_Id != "")
+            {
+                 valor = await _context.contas.Where(c => c.Categorias_Id.ToString() == contas.Categorias_Id).ToListAsync();
+            }
+            else if (contas.Descricao == "" && contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento != "" && contas.Categorias_Id != "")
+            {
+                 valor = await _context.contas.Where(c => c.Categorias_Id.ToString() == contas.Categorias_Id && c.Status_Pagamento == contas.Status_Pagamento).ToListAsync();
+            }
+            else if (contas.Descricao == "" && !contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento == "" && contas.Categorias_Id!= "")
+            {
+                 valor = await _context.contas.Where(c => c.Categorias_Id.ToString() == contas.Categorias_Id && c.Data_Vencimento >= contas.Data_Inicio && c.Data_Vencimento <= contas.Data_Final).ToListAsync();
             }
 
-            return valor[0];
+            // Status_Pagamento  Opções
+            if (contas.Descricao == "" && contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento != "" && contas.Categorias_Id == "")
+            {
+                 valor = await _context.contas.Where(c => c.Status_Pagamento == contas.Status_Pagamento).ToListAsync();
+            }
+            else if (contas.Descricao == "" && !contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento == "" && contas.Categorias_Id != "")
+            {
+                 valor = await _context.contas.Where(c => c.Status_Pagamento == contas.Status_Pagamento && c.Data_Vencimento >= contas.Data_Inicio && c.Data_Vencimento <= contas.Data_Final).ToListAsync();
+            }
+            // Data
+            else if (contas.Descricao == "" && !contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento == "" && contas.Categorias_Id == "")
+            {
+                valor = await _context.contas.Where(c => c.Data_Vencimento >= contas.Data_Inicio && c.Data_Vencimento <= contas.Data_Final).ToListAsync();
+            }
+
+            return valor;
         }
         // PUT: api/Contas/5
         [HttpPut("{id}")]

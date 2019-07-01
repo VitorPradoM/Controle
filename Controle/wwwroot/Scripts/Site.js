@@ -61,7 +61,7 @@ function alterar() {
         data: JSON.stringify(categorias),
         contentType: "application/json",
         success: function (resultado) {
-            alert("deu certo");
+          
         }
     });
 }
