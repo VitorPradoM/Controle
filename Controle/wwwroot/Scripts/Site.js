@@ -36,7 +36,7 @@ function chamaedit(id) {
   
 $.ajax({
     type: "GET",
-    url: "/api/Categorias/"+id,
+    url: "/api/Categorias/Valor",
     success: function (resultado) {
 
        

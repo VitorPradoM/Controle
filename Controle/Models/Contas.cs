@@ -18,7 +18,7 @@ namespace Controle.Models
       
         public string Status_Pagamento { get; set; }
 
-        public string Data_Vencimento { get; set; }
+        public DateTime Data_Vencimento { get; set; }
 
         public int Categorias_Id { get; set; }
 

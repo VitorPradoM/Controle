@@ -41,7 +41,19 @@ namespace Controle.Controllers
 
             return contas;
         }
+        // Esse aqui
+        [HttpPost("{contas}")]
+        public async Task<ActionResult<Contas>> Pequisa(string  descricao)
+        {
+            var valor = await _context.contas.Where(c => c.Descricao == descricao).ToListAsync();
 
+            if (descricao == null)
+            {
+                return NotFound();
+            }
+
+            return valor[0];
+        }
         // PUT: api/Contas/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutContas(int id, Contas contas)

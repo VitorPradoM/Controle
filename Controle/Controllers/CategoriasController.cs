@@ -29,7 +29,7 @@ namespace Controle.Controllers
         }
 
         // GET: api/Categorias/5
-      
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Categorias>> GetCategorias(int id)

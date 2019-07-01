@@ -37,3 +37,21 @@
         }
     });
 });
+function pesquisa() {
+
+     
+       var descricao = $("#Conta").val()
+            
+  
+
+    $.ajax({
+        type: "POST",
+        accepts: "application/json",
+        url: "/api/Contas?descricacao=lalalala",
+        data: JSON.stringify(descricao),
+        contentType: "application/json",
+        success: function (resultado) {
+            alert("deu certo");
+        }
+    });
+}
