@@ -4,52 +4,7 @@
         url: "/api/Contas",
         success: function (resultado) {
 
-            $.ajax({
-                type: "GET",
-                url: "/api/Categorias",
-                success: function (categorias) {
-
-
-                    var container = document.getElementById("container");
-                    var valor = "<table>"
-                    valor += "<thead>";
-                    valor += "<table>";
-                    valor += "<thead>";
-                    valor += "<tr>";
-                    valor += "<th>id</th>";
-                    valor += "<th>Descrição</th>";
-                    valor += "<th>Preço</th>";
-                    valor += "<th>Categoria</th>";
-                    valor += "<th>Data Vencimento</th>";
-                    valor += "<th>Status Pagamentos</th>";
-                    valor += "<th></th>";
-                    valor += "</tr>";
-                    valor += "</thead>";
-                    valor += "<tbody>";
-                    for (var i = 0; i < resultado.length; i++) {
-                        valor += "<tr>";
-                        valor += "<td>" + resultado[i].id + "</td>";
-                        valor += "<td>" + resultado[i].descricao + "</td>";
-                        valor += "<td>" + resultado[i].preco + "</td>";
-                        for (var x = 0; x < categorias.length; x++) { 
-                            if (resultado[i].categorias_Id == categorias[x].id) {
-                                valor += "<td>" + categorias[x].descricao + "</td>";
-                                alert("passei aqui");
-                            }
-                        }
-                        valor += "<td>" + resultado[i].data_Vencimento + "</td>";
-                        valor += "<td>" + resultado[i].status_Pagamento + "</td>";
-                        valor += "<td><a onclick='editar(" + resultado[i].id + ")'>Editar</td>";
-                        valor += "<td><a onclick='Remove(" + resultado[i].id + ")'>Excluir</td>";
-                        valor += "</tr>";
-                    }
-                    valor += "</tbody>";
-                    valor += "</table>";
-                    container.innerHTML = valor;
-                }
-
-
-            });
+            formatabela(resultado);
         }
     });
 });
@@ -74,7 +29,7 @@ function pesquisa() {
         };
     }
     console.log(ContasViewModel);
-   
+
 
     $.ajax({
         type: "POST",
@@ -83,9 +38,19 @@ function pesquisa() {
         data: JSON.stringify(ContasViewModel),
         contentType: "application/json",
         success: function (resultado) {
-            
-           
-            document.getElementById("container").innerHTML = "";     
+
+
+            formatabela(resultado);
+        }
+        });
+}
+function formatabela(resultado) {
+    $.ajax({
+        type: "GET",
+        url: "/api/Categorias",
+        success: function (categorias) {
+
+
             var container = document.getElementById("container");
             var valor = "<table>"
             valor += "<thead>";
@@ -107,18 +72,25 @@ function pesquisa() {
                 valor += "<td>" + resultado[i].id + "</td>";
                 valor += "<td>" + resultado[i].descricao + "</td>";
                 valor += "<td>" + resultado[i].preco + "</td>";
-                valor += "<td>" + resultado[i].categorias_Id + "</td>";
+                for (var x = 0; x < categorias.length; x++) {
+                    if (resultado[i].categorias_Id == categorias[x].id) {
+                        valor += "<td>" + categorias[x].descricao + "</td>";
+                        alert("passei aqui");
+                    }
+                }
                 valor += "<td>" + resultado[i].data_Vencimento + "</td>";
                 valor += "<td>" + resultado[i].status_Pagamento + "</td>";
-                valor += "<td><a onclick='chamaedit(" + resultado[i].id + ")'>Edit</td>";
+                valor += "<td><a onclick='editar(" + resultado[i].id + ")'>Editar</td>";
+                valor += "<td><a onclick='Remove(" + resultado[i].id + ")'>Excluir</td>";
                 valor += "</tr>";
             }
             valor += "</tbody>";
             valor += "</table>";
             container.innerHTML = valor;
         }
+
+
     });
-            
 }
 function editar(id) {
 
@@ -200,6 +172,7 @@ function alterar() {
         }
     });
 }
+
 function Remove(id) {
     
     $.ajax({
