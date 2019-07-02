@@ -31,9 +31,13 @@
                         valor += "<td>" + resultado[i].id + "</td>";
                         valor += "<td>" + resultado[i].descricao + "</td>";
                         valor += "<td>" + resultado[i].preco + "</td>";
-                        for (var i = 0; i < categorias.lenght; x++) {
-                            if (resultado[i].categorias_Id == categorias.id) {
+                        for (var x = 0; x < categorias.length; x++) { 
+                            console.log(categorias[i].id)
+                            console.log("==")
+                            console.log(resultado[i].categorias_Id)
+                            if (resultado[i].categorias_Id == categorias[x].id) {
                                 valor += "<td>" + categorias[x].descricao + "</td>";
+                                alert("passei aqui");
                             }
                         }
                         valor += "<td>" + resultado[i].data_Vencimento + "</td>";

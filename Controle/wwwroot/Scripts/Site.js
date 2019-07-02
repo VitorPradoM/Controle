@@ -14,6 +14,8 @@
                 valor += "<th>id</th>";
             valor += "<th>Descrição</th>";
             valor += "<th></th>";
+            valor += "<th></th>";
+            valor += "<th></th>";
                 valor += "</tr>";
                 valor += "</thead>";
                 valor += "<tbody>";
