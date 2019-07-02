@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
-    alert('passei aqui')
-    
+       
     $.ajax({
         type: "GET",
         url: "/api/Categorias",
@@ -22,7 +21,7 @@
                 valor += "<tr>";
                 valor +="<td>" + resultado[i].id + "</td>";
                 valor += "<td>" + resultado[i].descricao + "</td>";
-                valor += "<td><a onclick='chamaedit(" + resultado[i].id+")'>Edit</td>";
+                valor += "<td><a onclick='chamaedit(" + resultado[i].id + ")'>Editar</td>";
                 valor += "</tr>";
             }        
                valor +=   "</tbody>";
@@ -33,35 +32,44 @@
 });
 
 function chamaedit(id) {
-  
 $.ajax({
     type: "GET",
-    url: "/api/Categorias/Valor",
+    url: "/api/Categorias/"+id,
+    data: JSON.stringify(id),
     success: function (resultado) {
-
-       
+     var geral = document.getElementById("geral");
+    var html  =  "<h1>Editar</h1>"
+        html +=   "<div>"
+        html += "<label>Descriçao</label>"
+        html += "<input type='text' value=" + resultado.descricao + " id='descr'>"
+        html += "<input type='hidden' value="+ resultado.id + " id='id'>"
+        html +="</div>"
+        html += "<a onclick='alterar()'>Finalizar</a>"
+        geral.innerHTML = html;
                }
      });
 }
 
 
-function alterar() {
+function alterar() {   
     var descricao = $("#descr").val();
     var id = $("#id").val();
     var categorias = {
-        Id: id, 
+        Id:id,
         Descricao: descricao
        
     };
- 
+    console.log(categorias);
     $.ajax({
-        type: "POST",
+        type: "PUT",
         accepts: "application/json",
-        url: "/api/Categorias",
-        data: JSON.stringify(categorias),
+        url: "/api/Categorias/"+id,
+        data: JSON.stringify({ id: id,Descricao : descricao}),
         contentType: "application/json",
         success: function (resultado) {
           
         }
     });
 }
+
+

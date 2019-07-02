@@ -27,8 +27,20 @@ namespace Controle.Controllers
         {
             return await _context.categorias.ToListAsync();
         }
+       
 
-        // GET: api/Categorias/5
+        [HttpGet("Editar")]
+        public async Task<ActionResult<Categorias>> Editar(int id)
+        {
+            var categorias = await _context.categorias.FindAsync(id);
+
+            if (categorias == null)
+            {
+                return NotFound();
+            }
+
+            return categorias;
+        }
 
 
         [HttpGet("{id}")]

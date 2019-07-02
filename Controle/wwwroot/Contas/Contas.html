@@ -5,29 +5,28 @@
     <title></title>
 </head>
 <body>
-
-    <h1> Categorias Cadastradas </h1>
-    <a href="Create.html">Cadastrar Nova Conta</a>
-    <div>
-        <label>Pesquisar</label>
-        <input type="text" id="Conta" name="Conta" value="">
-    </div>
-    <div>
-        <label>Status do Pagamento</label>
-        <input type="text" id="StatusPagamento" name="Categoria" value="">
-    </div>
-    <div>
-        <label>Filtro por Categoria</label>
-        <input type="text" id="Categoria" name="Categoria" value="">
-    </div>
-    <div>
-        <label>Filtro por Data</label>
-        <input type="date" id="Data_Inicial" name="Data_Inicial" value="">
-        <label>Data final</label>
-        <input type="date" id="Data_Final" name="Data_Inicial" value="">
-    </div>
-    <button onclick="pesquisa()">Pesquisar</button>
-    <div id="container">
+    <div id="geral">
+        <h1> Categorias Cadastradas </h1>
+        <a href="Create.html">Cadastrar Nova Conta</a>
+        <div>
+            <label>Pesquisar</label>
+            <input type="text" id="Conta" name="Conta" value="">
+        </div>
+        <div>
+            <label>Status do Pagamento</label>
+            <input type="text" id="StatusPagamento" name="Categoria" value="">
+        </div>
+        <div id="Caracteristica">
+        </div>
+        <div>
+            <label>Filtro por Data</label>
+            <input type="date" id="Data_Inicial" name="Data_Inicial" value="">
+            <label>Data final</label>
+            <input type="date" id="Data_Final" name="Data_Inicial" value="">
+        </div>
+        <button onclick="pesquisa()">Pesquisar</button>
+        <div id="container">
+        </div>
     </div>
 
 </body>
@@ -37,3 +36,5 @@
         crossorigin="anonymous"></script>
 
 <script src="/Scripts/Contas.js"></script>
+<script src="/Scripts/Create.js"></script>
+
