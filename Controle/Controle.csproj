@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ComunicaController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Views\Indexx.html" />
   </ItemGroup>
 

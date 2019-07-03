@@ -69,6 +69,9 @@ function formatabela(resultado) {
             valor += "</thead>";
             valor += "<tbody>";
             for (var i = 0; i < resultado.length; i++) {
+                var data = resultado[i].data_Vencimento.split("T")
+                data = data[0].split("-")
+                data = data[2] + "/" + data[1] + "/" + data[0];
                 valor += "<tr>";
                 valor += "<td>" + resultado[i].id + "</td>";
                 valor += "<td>" + resultado[i].descricao + "</td>";
@@ -79,7 +82,7 @@ function formatabela(resultado) {
                        
                     }
                 }
-                valor += "<td>" + resultado[i].data_Vencimento + "</td>";
+                valor += "<td>" + data + "</td>";
                 valor += "<td>" + resultado[i].status_Pagamento + "</td>";
                 valor += "<td><a onclick='editar(" + resultado[i].id + ")'>Editar</td>";
                 valor += "<td><a onclick='Remove(" + resultado[i].id + ")'>Excluir</td>";
