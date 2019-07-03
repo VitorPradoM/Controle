@@ -37,7 +37,7 @@ $.ajax({
     data: JSON.stringify(id),
     success: function (resultado) {
      var geral = document.getElementById("geral");
-        var html =  "<h1 style='text-align:center !important'>Editar</h1>"
+        var html =  "<h1 class='titulo'>Editar</h1>"
         html +=   "<div class='col-md-2'>"
         html += "<label>Descriçao</label>"
         html += "<input type='text' value=" + resultado.descricao + " id='descr'>"

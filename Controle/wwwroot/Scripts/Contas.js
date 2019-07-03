@@ -106,7 +106,7 @@ function editar(id) {
             // Formulario Edit Contas
             data = resultado.data_Vencimento;
             var geral = document.getElementById("geral");
-            var html = "<h1 >Editar</h1>"
+            var html = "<h1 class='titulo' >Editar</h1>"
             html += "<div class='row' style='margin-top:15px'>"
             html += "<div class='col-md-2'>"
             html += "<label>Descrição</label>"
