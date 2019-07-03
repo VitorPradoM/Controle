@@ -160,6 +160,7 @@ function editar(id) {
     });
 }
 function alterar() {
+    var data_vencimento = $("#data_vencimento").val();
     var descricao = $("#descricao").val();
     var preco = $("#preco").val();
     var id = $("#id").val();
@@ -171,7 +172,7 @@ function alterar() {
         type: "PUT",
         accepts: "application/json",
         url: "/api/Contas/" + id,
-        data: JSON.stringify({ id: id, Descricao: descricao, Preco: preco, Status_Pagamento: status_pagamento, Categorias_Id: categoria }),
+        data: JSON.stringify({ id: id, Descricao: descricao, Preco: preco, Status_Pagamento: status_pagamento, Categorias_Id: categoria, Data_Vencimento: data_vencimento }),
         contentType: "application/json",
         success: function (resultado) {
             window.location.reload();
