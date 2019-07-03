@@ -26,7 +26,8 @@ function finaliza() {
     var preco = $("#preco").val();
   var data_vencimento = $("#data_vencimento").val();
     var status_pagamento = $("#StatusPagamento")[0].value;
-
+    preco = preco.replace(",", ".")
+    alert(preco);
     var Contas = {
         Categorias_Id: caracteristica,
         Preco:preco,
@@ -42,7 +43,7 @@ function finaliza() {
         data: JSON.stringify(Contas),
         contentType: "application/json",
         success: function (resultado) {
-           
+            location.href = "Contas.Html";
         }
     });
 }

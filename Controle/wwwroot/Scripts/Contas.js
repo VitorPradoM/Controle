@@ -45,6 +45,7 @@ function pesquisa() {
         });
 }
 function formatabela(resultado) {
+
     $.ajax({
         type: "GET",
         url: "/api/Categorias",
@@ -52,18 +53,17 @@ function formatabela(resultado) {
 
 
             var container = document.getElementById("container");
-            var valor = "<table>"
-            valor += "<thead>";
-            valor += "<table>";
-            valor += "<thead>";
+            var valor = "<table class='table'>"
+            valor += "<thead class='thead-dark'>";
             valor += "<tr>";
-            valor += "<th>id</th>";
-            valor += "<th>Descrição</th>";
-            valor += "<th>Preço</th>";
-            valor += "<th>Categoria</th>";
-            valor += "<th>Data Vencimento</th>";
-            valor += "<th>Status Pagamentos</th>";
-            valor += "<th></th>";
+            valor += "<th  scope='col'>id</th>";
+            valor += "<th  scope='col'>Descrição</th>";
+            valor += "<th  scope='col'>Preço</th>";
+            valor += "<th  scope='col'>Categoria</th>";
+            valor += "<th  scope='col'>Data Vencimento</th>";
+            valor += "<th  scope='col'>Status Pagamentos</th>";
+            valor += "<th scope='col'></th>";
+            valor += "<th scope='col'></th>";
             valor += "</tr>";
             valor += "</thead>";
             valor += "<tbody>";
@@ -75,7 +75,7 @@ function formatabela(resultado) {
                 for (var x = 0; x < categorias.length; x++) {
                     if (resultado[i].categorias_Id == categorias[x].id) {
                         valor += "<td>" + categorias[x].descricao + "</td>";
-                        alert("passei aqui");
+                       
                     }
                 }
                 valor += "<td>" + resultado[i].data_Vencimento + "</td>";

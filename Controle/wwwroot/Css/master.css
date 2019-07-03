@@ -1,0 +1,12 @@
+﻿body {
+}
+a {
+    cursor: pointer;
+    text-decoration: none !important;
+}
+.inicial-btn {
+    border: 5px outset;
+    border-color: black;
+    background-color: black;
+    color: white !important ;
+}

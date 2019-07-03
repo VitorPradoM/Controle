@@ -6,16 +6,13 @@
         success: function (resultado) {
             console.log(resultado);
             var container = document.getElementById("container");
-            var valor = "<table>"
-                valor += "<thead>";
-                valor += "<table>";
-                valor += "<thead>";
+            var valor = "<table class='table'>"
+            valor += "<thead class='thead-dark'>";
                 valor += "<tr>";
-                valor += "<th>id</th>";
-            valor += "<th>Descrição</th>";
-            valor += "<th></th>";
-            valor += "<th></th>";
-            valor += "<th></th>";
+            valor += "<th  scope='col'>id</th>";
+            valor += "<th  scope='col'>Descrição</th>";
+            valor += "<th  scope='col'></th>";
+            valor += "<th  scope='col'></th>";
                 valor += "</tr>";
                 valor += "</thead>";
                 valor += "<tbody>";
@@ -23,7 +20,7 @@
                 valor += "<tr>";
                 valor +="<td>" + resultado[i].id + "</td>";
                 valor += "<td>" + resultado[i].descricao + "</td>";
-                valor += "<td><a onclick='chamaedit(" + resultado[i].id + ")'>Editar</td>";
+                valor += "<td> <a onclick='chamaedit(" + resultado[i].id + ")'>Editar</td>";
                 valor += "</tr>";
             }        
                valor +=   "</tbody>";

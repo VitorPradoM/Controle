@@ -3,33 +3,39 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Css/master.css">
 </head>
 <body>
+    <h1>Cadastrar Contas </h1>
     <form enctype="multipart/form-data">
-        <div>
-            <label>Descrição</label>
-            <input type="text" id="descricao" name="descricao" value="">
-        </div>
-        <div>
-            <label>Preço</label>
-            <input type="text" id="preco" name="preco" value="">
-        </div>        
-            <div id="Caracteristica">
-            </div> 
-        <div>
-            <label>Data Vencimento</label>
-            <input type="Date" id="data_vencimento" name="data_vencimento" value="">
-        </div>
-        <div>
-            <label>Status Pagamento</label>
-            <select  id="StatusPagamento" name="StatusPagamento">
-                <option value="Pago">Pago</option>
-                <option value="Não Pago" selected>Não Pago</option>
-            </select>
-        </div>
+        <div class="row" style="margin-left:25px">
+            <div class="col-md-2">
+                <label>Descrição</label>
+                <input type="text" id="descricao" name="descricao" value="">
+            </div>
+            <div class="col-md-2">
+                <label>Preço</label>
+                <input type="text" id="preco" name="preco" value="">
+            </div>
+            <div class="col-md-2" id="Caracteristica">
+            </div>
+            <div class="col-md-2"> 
+                <label>Data Vencimento</label>
+                <input type="Date" id="data_vencimento" name="data_vencimento" value="">
+            </div>
+            <div class="col-md-2">
+                <label>Status Pagamento</label>
+                <select id="StatusPagamento" name="StatusPagamento">
+                    <option value="Pago">Pago</option>
+                    <option value="Não Pago" selected>Não Pago</option>
+                </select>
+            </div>
 
-
-        <a onclick="finaliza()"> Finaliza</a>
+        </div>
+        <div style="margin-top:45px;margin-left:35px">
+        <a  class="inicial-btn" onclick="finaliza()"> Cadastrar</a>
+            </div>
     </form>
 </body>
 </html>
