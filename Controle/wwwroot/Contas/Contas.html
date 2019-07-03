@@ -7,38 +7,40 @@
     <link rel="stylesheet" href="../Css/master.css">
 </head>
 <body>
-    <div style="margin-left:45px !important">
-        <h1> Contas Cadastradas </h1>
-    </div>
-    <div style="margin-left:45px !important;margin-top:10px">
-        <a class="inicial-btn" href="Create.html">Cadastrar Nova Conta</a>
-    </div>
+   
 
-    <div class="row" id="geral" style="margin-top:10px;margin-left:45px !important">
-        <div class="col-md-2">
-            <label>Descrição</label>
-            <input type="text"  id="Conta" name="Conta" value="">
+    <div id="geral" style="margin-top:10px;margin-left:45px !important">
+        <div style="margin-left:45px !important">
+            <h1> Contas Cadastradas </h1>
         </div>
-        <div class="col-md-2">
-            <label>Status do Pagamento</label>
-            <input type="text" id="StatusPagamento" name="Categoria" value="">
+        <div style="margin-left:45px !important;margin-top:40px !important;margin-bottom:30px!important">
+            <a class="inicial-btn" href="Create.html">Cadastrar Nova Conta</a>
         </div>
-        <div class="col-md-2" id="Caracteristica">
+        <div class="row">
+            <div class="col-md-2">
+                <label>Descrição</label>
+                <input type="text" id="Conta" name="Conta" value="">
+            </div>
+            <div class="col-md-2">
+                <label>Status do Pagamento</label>
+                <input type="text" id="StatusPagamento" name="Categoria" value="">
+            </div>
+            <div class="col-md-2" id="Caracteristica">
+            </div>
+            <div class="col-md-2">
+                <label>Data inicial</label>
+                <input type="date" id="Data_Inicial" name="Data_Inicial" value="">
+            </div>
+            <div class="col-md-2">
+                <label>Data final</label>
+                <input type="date" id="Data_Final" name="Data_Inicial" value="">
+            </div>
+            <div style="margin-top:30px" class="col-md-2">
+                <button onclick="pesquisa()">Pesquisar</button>
+            </div>
+            <div id="container" class="col-md-10" style="margin-top:50px">
+            </div>
         </div>
-        <div class="col-md-2">
-            <label>Data inicial</label>
-            <input type="date" id="Data_Inicial" name="Data_Inicial" value="">
-        </div>
-        <div class="col-md-2">
-            <label>Data final</label>
-            <input type="date" id="Data_Final" name="Data_Inicial" value="">
-        </div>
-        <div style="margin-top:30px" class="col-md-2">
-            <button onclick="pesquisa()">Pesquisar</button>
-        </div>
-        <div id="container" class="col-md-10" style="margin-top:50px">
-        </div>
-
     </div>
 
 </body>

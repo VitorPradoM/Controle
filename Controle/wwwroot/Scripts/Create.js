@@ -11,6 +11,7 @@ function caracteristica() {
             console.log(resultado);
             var opcoes = "<label>Caracteristica</label>";
             opcoes += "<select id='caracteristica' name='select'>";
+            opcoes += "<option value='' selected>Selecione</option>;"
             for (var i = 0; i < resultado.length; i++) {
                 opcoes += "<option value=" + resultado[i].id + ">" + resultado[i].descricao + "</option>"
             }

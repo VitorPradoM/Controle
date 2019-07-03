@@ -27,9 +27,10 @@ function pesquisa() {
             Categorias_Id: $("#caracteristica").val(),
 
         };
+       
     }
     console.log(ContasViewModel);
-
+    
 
     $.ajax({
         type: "POST",
@@ -102,30 +103,34 @@ function editar(id) {
             // Formulario Edit Contas
             data = resultado.data_Vencimento;
             var geral = document.getElementById("geral");
-            var html = "<h1>Editar</h1>"
-            html += "<div>"
+            var html = "<h1 >Editar</h1>"
+            html += "<div class='row' style='margin-top:15px'>"
+            html += "<div class='col-md-2'>"
             html += "<label>Descrição</label>"
             html += "<input type='hidden' id='id' name='descricao' value='" + resultado.id + "'>"
             html += "<input type='text' id='descricao' name='descricao' value='" + resultado.descricao + "'>"
             html += "</div>"
-            html += "<div>"
+            html += "<div class='col-md-2'>"
             html += "<label>Preço</label>"
             html += "<input type='text' id='preco' name='preco' value='" + resultado.preco + "'>"
-            html += "</div>"
-            html += "<div id='Caracteristica'>"
-            html += "</div>"
-            html += "<div>"
+            html += "</div class='col-md-2'>"
+            html += "<div class='col-md-2' id='Caracteristica'>"
+            html += "</div> "
+            html += "<div class='col-md-2'>"
             html += "<label>Data Vencimento</label>"
             html += "<input type='Date' id='data_vencimento' name='data_vencimento' value='" + data.split("T")[0] + "'>"
             html += "</div>"
-            html += "<div>"
+            html += "<div class='col-md-2'>"
             html += "<label>Status Pagamento</label>"
             html += "<select id='StatusPagamento'  name='StatusPagamento'>"
             html += "<option value='Pago'>Pago</option>"
             html += "<option value='Não Pago' >Não Pago</option>"
             html += "</select>"
             html += "</div>"
-            html += "<a onclick='alterar()'>Finalizar<a/>"
+            html += "</div>"
+            html += "<div style='margin-top:40px'>"
+            html += "<a class='inicial-btn' onclick='alterar()'>Finalizar<a/>"
+            html += "</div>"
             geral.innerHTML = html;
           
             $("#data_vencimento")[0].value = data.split("T")[0];
@@ -138,15 +143,13 @@ function editar(id) {
                 success: function (resultado) {
                     console.log(resultado);
                     var opcoes = "<label>Caracteristica</label>";
-                     opcoes += "<select id='caracteristica' name='select'>";
+                    opcoes += "<select id='caracteristica' name='select'>";                
                     for (var i = 0; i < resultado.length; i++) {
                         opcoes += "<option value=" + resultado[i].id + ">" + resultado[i].descricao + "</option>"
                     }
                     opcoes += "</select>";
                     Caracteristica.innerHTML = opcoes;
-                   
-                    
-    
+                                           
                 }
             });
          
@@ -159,7 +162,7 @@ function alterar() {
     var id = $("#id").val();
     var status_pagamento = $("#StatusPagamento")[0].value;
     var categoria = $("#caracteristica")[0].value
-
+    preco = preco.replace(",", ".")
  
     $.ajax({
         type: "PUT",
@@ -168,6 +171,7 @@ function alterar() {
         data: JSON.stringify({ id: id, Descricao: descricao, Preco: preco, Status_Pagamento: status_pagamento, Categorias_Id: categoria }),
         contentType: "application/json",
         success: function (resultado) {
+            window.location.reload();
 
         }
     });

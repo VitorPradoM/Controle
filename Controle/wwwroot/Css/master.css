@@ -6,7 +6,7 @@ a {
 }
 .inicial-btn {
     border: 5px outset;
-    border-color: black;
-    background-color: black;
-    color: white !important ;
+    border-color: #454d55;
+    background-color: #343a40;
+    color: white !important;
 }
