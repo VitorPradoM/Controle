@@ -5,43 +5,51 @@
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../Css/master.css">
+    
+
 </head>
 <body>
-   
-
-    <div id="geral" style="margin-top:10px;margin-left:45px !important">
-        <div style="margin-left:45px !important">
-            <h1> Contas Cadastradas </h1>
+    <nav style="background-color:#343a40 !important" class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand nav" href="../Contas/Contas.html">Contas</a>
+        <a class="navbar-brand nav" href="../Caracteristicas/Caracteristicas.html">Categorias</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+        <div id="geral" style="margin-top:10px;margin-left:45px !important">
+            <div style="text-align:center !important">
+                <h1> Contas Cadastradas </h1>
+            </div>
+          
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Descrição</label>
+                    <input type="text" id="Conta" name="Conta" value="">
+                </div>
+                <div class="col-md-2">
+                    <label>Status do Pagamento</label>
+                    <input type="text" id="StatusPagamento" name="Categoria" value="">
+                </div>
+                <div class="col-md-2" id="Caracteristica">
+                </div>
+                <div class="col-md-2">
+                    <label>Data inicial</label>
+                    <input type="date" id="Data_Inicial" name="Data_Inicial" value="">
+                </div>
+                <div class="col-md-2">
+                    <label>Data final</label>
+                    <input type="date" id="Data_Final" name="Data_Inicial" value="">
+                </div>
+                <div style="margin-top:30px" class="col-md-2">
+                    <button onclick="pesquisa()">Pesquisar</button>
+                </div>
+                <div style="margin-left:45px !important;margin-top:40px !important;margin-bottom:20px!important;margin-left:80px !important">
+                    <a class="inicial-btn" href="Create.html">Cadastrar Nova Conta</a>
+                </div>
+                <div id="container" class="col-md-10" style="margin-top:5px;margin-left:65px !important">
+                </div>
+            </div>
         </div>
-        <div style="margin-left:45px !important;margin-top:40px !important;margin-bottom:30px!important">
-            <a class="inicial-btn" href="Create.html">Cadastrar Nova Conta</a>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label>Descrição</label>
-                <input type="text" id="Conta" name="Conta" value="">
-            </div>
-            <div class="col-md-2">
-                <label>Status do Pagamento</label>
-                <input type="text" id="StatusPagamento" name="Categoria" value="">
-            </div>
-            <div class="col-md-2" id="Caracteristica">
-            </div>
-            <div class="col-md-2">
-                <label>Data inicial</label>
-                <input type="date" id="Data_Inicial" name="Data_Inicial" value="">
-            </div>
-            <div class="col-md-2">
-                <label>Data final</label>
-                <input type="date" id="Data_Final" name="Data_Inicial" value="">
-            </div>
-            <div style="margin-top:30px" class="col-md-2">
-                <button onclick="pesquisa()">Pesquisar</button>
-            </div>
-            <div id="container" class="col-md-10" style="margin-top:50px">
-            </div>
-        </div>
-    </div>
 
 </body>
 </html>

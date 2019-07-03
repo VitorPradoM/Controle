@@ -37,13 +37,15 @@ $.ajax({
     data: JSON.stringify(id),
     success: function (resultado) {
      var geral = document.getElementById("geral");
-    var html  =  "<h1>Editar</h1>"
-        html +=   "<div>"
+        var html =  "<h1 style='text-align:center !important'>Editar</h1>"
+        html +=   "<div class='col-md-2'>"
         html += "<label>Descriçao</label>"
         html += "<input type='text' value=" + resultado.descricao + " id='descr'>"
         html += "<input type='hidden' value="+ resultado.id + " id='id'>"
-        html +="</div>"
-        html += "<a onclick='alterar()'>Finalizar</a>"
+        html += "</div>"
+        html += "<div class='col-md-2' style='margin-left:200px;margin-top:-25px'>"
+        html += "<a class='inicial-btn' onclick='alterar()'>Finalizar</a>"
+        html += "</div>"
         geral.innerHTML = html;
                }
      });

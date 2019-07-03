@@ -2,10 +2,16 @@
 a {
     cursor: pointer;
     text-decoration: none !important;
+    font-weight: bold;
 }
 .inicial-btn {
     border: 5px outset;
     border-color: #454d55;
     background-color: #343a40;
     color: white !important;
+}
+
+.nav {
+    color: white !important;
+    font-weight: bold;
 }
