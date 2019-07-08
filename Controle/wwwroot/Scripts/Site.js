@@ -39,7 +39,7 @@ $.ajax({
      var geral = document.getElementById("geral");
         var html =  "<h1 class='titulo'>Editar</h1>"
         html +=   "<div class='col-md-2'>"
-        html += "<label>Descriçao</label>"
+        html += "<label>Descrição</label>"
         html += "<input type='text' value=" + resultado.descricao + " id='descr'>"
         html += "<input type='hidden' value="+ resultado.id + " id='id'>"
         html += "</div>"

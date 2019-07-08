@@ -44,10 +44,6 @@ namespace Controle.Controllers
             return contas;
         }
 
-       
-
-
-
         // Esse aqui queria  quero que ele aceita requisição do contajs função pesquisa
 
         [HttpPost("Pesquisa")]
@@ -106,7 +102,6 @@ namespace Controle.Controllers
                 {
                     valor = await _context.contas.Where(c => c.Categorias_Id.ToString() == contas.Categorias_Id && c.Data_Vencimento >= contas.Data_Inicio && c.Data_Vencimento <= contas.Data_Final).ToListAsync();
                 }
-
 
                 // Status_Pagamento  Opções
                 if (contas.Descricao == "" && contas.Data_Inicio.ToString().Contains("01/01/0001") && contas.Status_Pagamento != "" && contas.Categorias_Id == "")

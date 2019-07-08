@@ -9,7 +9,7 @@ function caracteristica() {
         url: "/api/Categorias",
         success: function (resultado) {
             console.log(resultado);
-            var opcoes = "<label>Caracteristica</label>";
+            var opcoes = "<label>Categorias</label>";
             opcoes += "<select id='caracteristica' name='select'>";
             opcoes += "<option value='' selected>Selecione</option>;"
             for (var i = 0; i < resultado.length; i++) {
@@ -28,23 +28,24 @@ function finaliza() {
   var data_vencimento = $("#data_vencimento").val();
     var status_pagamento = $("#StatusPagamento")[0].value;
     preco = preco.replace(",", ".")
-    alert(preco);
+    
     var Contas = {
         Categorias_Id: caracteristica,
-        Preco:preco,
+        Preco: preco,
         Descricao: descricao,
         Status_Pagamento: status_pagamento,
         Data_Vencimento: data_vencimento
     }
-    console.log(Contas);
-    $.ajax({
-        type: "POST",
-        accepts: "application/json",
-        url: "/api/Contas",
-        data: JSON.stringify(Contas),
-        contentType: "application/json",
-        success: function (resultado) {
-            location.href = "Contas.Html";
-        }
-    });
-}
+       
+        $.ajax({
+            type: "POST",
+            accepts: "application/json",
+            url: "/api/Contas",
+            data: JSON.stringify(Contas),
+            contentType: "application/json",
+            success: function (resultado) {
+                location.href = "Contas.Html";
+            }
+        });
+    }
+  

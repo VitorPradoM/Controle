@@ -22,5 +22,7 @@ namespace Controle.Models
 
         public int Categorias_Id { get; set; }
 
+        public int Produtos_Id { get; set; }
+
     }
 }

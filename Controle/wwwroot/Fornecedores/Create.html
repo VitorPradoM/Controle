@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Css/master.css">
+</head>
+<body>
+    <nav style="background-color:#343a40 !important" class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand nav" href="Contas.html">Contas</a>
+        <a class="navbar-brand nav" href="../Caracteristicas/Caracteristicas.html">Categorias</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <h1 class="titulo">Cadastrar Fornecedores </h1>
+    <form enctype="multipart/form-data">
+        <div class="row" style="margin-left:25px">
+            <div class="col-md-4">
+                <label>Nome</label>
+                <input type="text" id="Nome" name="Nome" value="">
+            </div>
+            <div class="col-md-4">
+                <label>Cnpj</label>
+                <input type="text" id="Cnpj" name="Cnpj" value="">
+            </div>
+            <div class="col-md-4">
+                <label>Cpf</label>
+                <input type="text" maxlength="11" id="Cpf" name="Cpf" value="">
+            </div>
+
+            <div class="col-md-4">
+                <label>Logradouro</label>
+                <input type="text" id="Logradouro" name="Logradouro" value="">
+            </div>
+            <div class="col-md-4">
+                <label>Bairro</label>
+                <input type="text" id="Bairro" name="Bairro" value="">
+            </div>
+            <div class="col-md-4">
+                <label>Numero</label>
+                <input type="text" id="Numero" name="Numero" value="">
+            </div>
+            <div class="col-md-4">
+                <label>Cidade</label>
+                <input type="text" id="Cidade" name="Cidade" value="">
+            </div>
+            <div class="col-md-4">
+                <label>Estado</label>
+                <input type="text" id="Estado" name="Estado" value="">
+            </div>
+            <div class="col-md-4">
+                <label>País</label>
+                <input type="text" id="Pais" name="Pais" value="">
+            </div>
+            <div class="col-md-4">
+                <label>Cep</label>
+                <input type="text" id="Cep" name="Cep" value="">
+            </div>
+        </div>
+        <div style="margin-top:45px;margin-left:35px">
+            <a class="inicial-btn" onclick="Cadastra()"> Cadastrar</a>
+        </div>
+    </form>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+<script src="/Scripts/Fornecedores.js"></script>

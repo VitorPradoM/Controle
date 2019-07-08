@@ -14,9 +14,23 @@ namespace Controle.Context
 
         public contexto(DbContextOptions<contexto> options) : base(options)
         {
-
+            
         }
         public virtual DbSet<Contas> contas { get; set; }
         public virtual DbSet<Categorias> categorias { get; set; }
+        public virtual DbSet<Produtos> produtos { get; set; }
+        public virtual DbSet<Categorias_Produtos> categoria_produtos { get; set; }
+        public virtual DbSet<Enderecos> Enderecos { get; set; }
+        public virtual DbSet<Fornecedores> Fornecedores { get; set; }
+        public virtual DbSet<Endereco_Fornecedor> Endereco_Fornecedor { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+
+            base.OnModelCreating(builder);
+            builder.Entity<Endereco_Fornecedor>()
+            .HasKey(t => new { t.Endereco_Id, t.Fornecedor_Id });
+        }
+
+        }
     }
-}

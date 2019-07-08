@@ -3,8 +3,9 @@
         type: "GET",
         url: "/api/Contas",
         success: function (resultado) {
-
+            console.log(resultado);
             formatabela(resultado);
+            
         }
     });
 });
@@ -27,10 +28,10 @@ function pesquisa() {
             Categorias_Id: $("#caracteristica").val(),
 
         };
-       
+
     }
     console.log(ContasViewModel);
-    
+
 
     $.ajax({
         type: "POST",
@@ -40,10 +41,9 @@ function pesquisa() {
         contentType: "application/json",
         success: function (resultado) {
 
-
             formatabela(resultado);
         }
-        });
+    });
 }
 function formatabela(resultado) {
 
@@ -79,7 +79,7 @@ function formatabela(resultado) {
                 for (var x = 0; x < categorias.length; x++) {
                     if (resultado[i].categorias_Id == categorias[x].id) {
                         valor += "<td>" + categorias[x].descricao + "</td>";
-                       
+
                     }
                 }
                 valor += "<td>" + data + "</td>";
@@ -98,6 +98,7 @@ function formatabela(resultado) {
 }
 function editar(id) {
 
+
     $.ajax({
         type: "GET",
         url: "/api/Contas/" + id,
@@ -106,7 +107,7 @@ function editar(id) {
             // Formulario Edit Contas
             data = resultado.data_Vencimento;
             var geral = document.getElementById("geral");
-            var html = "<h1 class='titulo' >Editar</h1>"
+            var html = "<h1 class='titulo' >Editar Contas</h1>"
             html += "<div class='row' style='margin-top:15px'>"
             html += "<div class='col-md-2'>"
             html += "<label>Descrição</label>"
@@ -135,7 +136,7 @@ function editar(id) {
             html += "<a class='inicial-btn' onclick='alterar()'>Finalizar<a/>"
             html += "</div>"
             geral.innerHTML = html;
-          
+
             $("#data_vencimento")[0].value = data.split("T")[0];
             $("#StatusPagamento")[0].value = resultado.status_Pagamento;
 
@@ -146,16 +147,16 @@ function editar(id) {
                 success: function (resultado) {
                     console.log(resultado);
                     var opcoes = "<label>Caracteristica</label>";
-                    opcoes += "<select id='caracteristica' name='select'>";                
+                    opcoes += "<select id='caracteristica' name='select'>";
                     for (var i = 0; i < resultado.length; i++) {
                         opcoes += "<option value=" + resultado[i].id + ">" + resultado[i].descricao + "</option>"
                     }
                     opcoes += "</select>";
                     Caracteristica.innerHTML = opcoes;
-                                           
+
                 }
             });
-         
+
         }
     });
 }
@@ -167,7 +168,7 @@ function alterar() {
     var status_pagamento = $("#StatusPagamento")[0].value;
     var categoria = $("#caracteristica")[0].value
     preco = preco.replace(",", ".")
- 
+
     $.ajax({
         type: "PUT",
         accepts: "application/json",
@@ -182,7 +183,27 @@ function alterar() {
 }
 
 function Remove(id) {
-    
+
+    ////var geral = document.getElementById("modal");
+    ////var exclui = "<div class='modal-dialog' role='document'>"
+    ////exclui += "<div class='modal-content'>"
+    ////exclui += "<div class='modal-header'>"
+    ////exclui += "<h5 class='modal-title'>Título do modal</h5>"
+    ////exclui += "<button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>"
+    ////exclui += "<span aria-hidden='true'>&times;</span>"
+    ////exclui += "</button>"
+    ////exclui += "</div>"
+    ////exclui += "<div class='modal-body'>"
+    ////exclui += "<p>Texto do corpo do modal, é aqui.</p>"
+    ////exclui += "</div>"
+    ////exclui += "<div class='modal-footer'>"
+    ////exclui += "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>"
+    ////exclui += "<button type='button' class='btn btn-primary'>Salvar mudanças</button>"
+    ////exclui += "</div>"
+    ////exclui += "</div>"
+    ////exclui += "</div>"
+
+    geral.innerHTML = exclui;
     $.ajax({
         type: "DELETE",
         accepts: "application/json",
