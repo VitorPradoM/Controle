@@ -51,7 +51,7 @@ function enderecos(id) {
             console.log(resultado);
             var container = document.getElementById("container");
             var valor = "<h1>Endereços do forncedor </h1>"
-            valor += "<a  onclick='Cadastrar("+id+")'>Cradastrar Novo Endereço</td>",
+          
             valor += "<table class='table'>"
             valor += "<thead class='thead-dark'>";
             valor += "<tr>";
@@ -67,20 +67,19 @@ function enderecos(id) {
             valor += "</tr>";
             valor += "</thead>";
             valor += "<tbody>";
-          
-                             
+            for (var i = 0; i < resultado.length;i++) {
                 valor += "<tr>";
-                valor += "<td>" + resultado.pais + "</td>";
-                valor += "<td>" + resultado.estado + "</td>";
-                valor += "<td>" + resultado.cidade + "</td>";
-                valor += "<td>" + resultado.bairro + "</td>";
-                valor += "<td>" + resultado.numero + "</td>";
-                valor += "<td>" + resultado.logradouro + "</td>";
-                valor += "<td>" + resultado.cep + "</td>";
-               
-                valor += "<td><a onclick='editar(" + resultado.id + ")'>Editar</td>";
-                valor += "<td><a onclick='Remove(" + resultado.id + ")'>Excluir</td>";
+                valor += "<td>" + resultado[i].pais + "</td>";
+                valor += "<td>" + resultado[i].estado + "</td>";
+                valor += "<td>" + resultado[i].cidade + "</td>";
+                valor += "<td>" + resultado[i].bairro + "</td>";
+                valor += "<td>" + resultado[i].numero + "</td>";
+                valor += "<td>" + resultado[i].logradouro + "</td>";
+                valor += "<td>" + resultado[i].cep + "</td>";
 
+                valor += "<td><a onclick='editar(" + resultado[i].id + ")'>Editar</td>";
+                valor += "<td><a onclick='remove(" + resultado[i].id + "," + id + ")'>Excluir</td>";
+            }
             
             valor += "</tr>";
             valor += "</tbody>";
@@ -88,21 +87,20 @@ function enderecos(id) {
             container.innerHTML = valor;
         }
 
-
     });
 }
 
 function Cadastrar(id) {
-    var container = document.getElementById("container");
-     var valor = "<h1 class='titulo'>Cadastrar Endereço Fornecedor</h1>"
-     valor += "<div class='row' style='margin-left:45px'>"
+        var container = document.getElementById("container");
+        var valor = "<h1 class='titulo'>Cadastrar Endereço Fornecedor</h1>"
+        valor += "<div class='row' style='margin-left:45px'>"
         valor += "<div class='col-md-4'>"
         valor += "<label>Logradouro</label>"
         valor +="<input type='text' id='Logradouro' name='Logradouro' value=''>"
         valor +="</div>"
-        valor +="<div class='col-md-4>"
+        valor += "<div class='col-md-4'>"
         valor += "<label>Bairro</label>"
-        valor += "<input type='text' id='Bairro' name='Bairro' value='''>"
+        valor += "<input type='text' id='Bairro' name='Bairro' value=''>"
         valor += "</div>"
         valor += "<div class='col-md-4'>"
         valor += "<label>Numero</label>"
@@ -158,4 +156,98 @@ function finalizar(id) {
         success: function (resultado) {
         }
     });
+}
+
+function editar(id) {
+
+    $.ajax({
+        type: "GET",
+        url: "/api/Enderecos/" + id,
+        data: JSON.stringify(id),
+        success: function (resultado) {
+            var container = document.getElementById("container");
+            var valor = "<h1 class='titulo'>Editar Endereço Fornecedor</h1>"
+            valor += "<div class='row' style='margin-left:45px'>"
+            valor += "<div class='col-md-4'>"
+            valor += "<label>Logradouro</label>"
+            valor += "<input type='text' id='Logradouro' value=" + resultado.logradouro + " name='Logradouro' value=''>"
+            valor += "</div>"
+            valor += "<div class='col-md-4'>"
+            valor += "<label>Bairro</label>"
+            valor += "<input type='text' id='Bairro' name='Bairro' value='" + resultado.bairro + "'>"
+            valor += "</div>"
+            valor += "<div class='col-md-4'>"
+            valor += "<label>Numero</label>"
+            valor += "<input type='text' id='Numero' name='Numero' value='" + resultado.numero + "'>"
+            valor += "</div>"
+            valor += "<div class='col-md-4'>"
+            valor += "<label>Cidade</label>"
+            valor += "<input type='text' id='Cidade' name='Cidade' value='" + resultado.cidade + "'>"
+            valor += "</div>"
+            valor += "<div class='col-md-4'>"
+            valor += "<label>Estado</label>"
+            valor += "<input type='text' id='Estado' name='Estado' value='" + resultado.estado + "'>"
+            valor += "</div>"
+            valor += "<div class='col-md-4'>"
+            valor += "<label>País</label>"
+            valor += "<input type='text' id='Pais' name='Pais' value='" + resultado.pais + "'>"
+            valor += "</div>"
+            valor += "<div class='col-md-4'>"
+            valor += "<label>Cep</label>"
+            valor += "<input type='text' id='Cep' name='Cep' value='" + resultado.cep + "'>"
+            valor += "</div>"
+            valor += "<a onclick='edit(" + resultado.id + ")'>Cadastrar</a>"
+            valor += "</div>"
+            container.innerHTML = valor;
+        }
+    });
+}
+function edit(id) {
+
+    var logradouro = $("#Logradouro").val();
+    var bairro = $("#Bairro").val();
+    var numero = $("#Numero").val();
+    var cidade = $("#Cidade").val();
+    var estado = $("#Estado").val();
+    var pais = $("#Pais").val();
+    var cep = $("#Cep").val();
+    
+    var Enderecos = {
+        Id: id,
+        Logradouro: logradouro,
+        Bairro: bairro,
+        Numero: numero,
+        Cidade: cidade,
+        Estado: estado,
+        Pais: pais,
+        Cep: cep
+    };
+
+    $.ajax({
+        type: "PUT",
+        accepts: "application/json",
+        url: "/api/Enderecos/" + id,
+        data: JSON.stringify(Enderecos),
+        contentType: "application/json",      
+        success: function (resultado) {
+
+            location.reload();
+        }
+    });
+}
+
+function remove(id,resultado) {
+
+    alert(id);
+    $.ajax({
+        type: "DELETE",
+        accepts: "application/json",
+        url: "/api/Enderecos/" + id,
+        data: JSON.stringify({ "Id": id }),
+        contentType: "application/json",
+        success: function (resultado) {
+            window.location.reload();
+        }
+    });
+
 }
