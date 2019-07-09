@@ -102,19 +102,26 @@ namespace Controle.Controllers
         }
        
         // DELETE: api/Enderecos/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Enderecos>> DeleteEnderecos(int id)
+        [HttpDelete("{resultado}/{id}")]
+        public async Task<ActionResult<Enderecos>> DeleteEnderecos(int resultado,int id)
         {
-            var Fornecedores_endereco = await _context.Endereco_Fornecedor.Where(d=>d.Endereco_Id == id).ToListAsync();
+            var Fornecedores_endereco = await _context.Endereco_Fornecedor.Where(d=>d.Endereco_Id == id && d.Fornecedor_Id == resultado).ToListAsync();
+           
+            var endereco = await _context.Endereco_Fornecedor.Where(d => d.Endereco_Id == id).ToListAsync();
             var enderecos = await _context.Enderecos.FindAsync(id);
-            if (enderecos == null)
-            {
-                return NotFound();
-            }
+
             for (int i=0;i< Fornecedores_endereco.Count();i++) {
                 _context.Endereco_Fornecedor.Remove(Fornecedores_endereco[i]);
             }
-            _context.Enderecos.Remove(enderecos);
+
+            if (endereco.Count() == 1)
+            {                
+                if (enderecos == null)
+                {
+                    return NotFound();
+                }
+                _context.Enderecos.Remove(enderecos);
+            }
             await _context.SaveChangesAsync();
 
             return enderecos;

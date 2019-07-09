@@ -79,8 +79,8 @@ namespace Controle.Controllers
         {
             Endereco_Fornecedor endereco_Fornecedor = new Endereco_Fornecedor();
 
-          
-            var Fornecedor =_context.Fornecedores.Add(endereco_FornecedorViewModel.fornecedores);
+
+            var Fornecedor = _context.Fornecedores.Add(endereco_FornecedorViewModel.fornecedores);
             var Endereco = _context.Enderecos.Add(endereco_FornecedorViewModel.enderecos);
 
             await _context.SaveChangesAsync();
@@ -91,17 +91,28 @@ namespace Controle.Controllers
             _context.Entry(endereco_FornecedorViewModel.enderecos).State = EntityState.Unchanged;
             _context.Endereco_Fornecedor.Add(endereco_Fornecedor);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetFornecedores", new { id = endereco_Fornecedor.Fornecedor_Id  }, endereco_Fornecedor);
+            return CreatedAtAction("GetFornecedores", new { id = endereco_Fornecedor.Fornecedor_Id }, endereco_Fornecedor);
         }
+        //[HttpPost]
+        //public async Task<ActionResult<Fornecedores>> Edit(Endereco_FornecedorViewModel endereco_FornecedorViewModel)
+        //{
+
+        //}
 
         // DELETE: api/Fornecedores/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Fornecedores>> DeleteFornecedores(int id)
         {
-            var fornecedores = await _context.Fornecedores.FindAsync(id);
+            List<Endereco_Fornecedor> endereco_fornecedores = new List<Endereco_Fornecedor>();
+            endereco_fornecedores = await _context.Endereco_Fornecedor.Where(f => f.Fornecedor_Id == id).ToListAsync();
+           var fornecedores = await _context.Fornecedores.FindAsync(id);
             if (fornecedores == null)
             {
                 return NotFound();
+            }
+            for (int i =0;i< endereco_fornecedores.Count();i++)
+            {
+                _context.Endereco_Fornecedor.Remove(endereco_fornecedores[i]);
             }
 
             _context.Fornecedores.Remove(fornecedores);

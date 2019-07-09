@@ -6,7 +6,8 @@
 
 
             var container = document.getElementById("container");
-            var valor = "<table class='table'>"
+            var valor = "<a href='Create.html'>Criar Fornecedor</a>"
+            valor += "<table class='table'>";           
             valor += "<thead class='thead-dark'>";
             valor += "<tr>";
             valor += "<th  scope='col'>id</th>";
@@ -27,8 +28,8 @@
                 valor += "<td>" + resultado[i].cnpj + "</td>";
                 valor += "<td>" + resultado[i].cpf + "</td>";
                 valor += "<td><a class='nome'  onclick='enderecos(" + resultado[i].id +")'/>Enderecos</td>";
-                valor += "<td><a onclick='editar(" + resultado[i].id + ")'/>Editar</td>";
-                valor += "<td><a onclick='Remove(" + resultado[i].id + ")'/>Excluir</td>";
+                valor += "<td><a onclick='EditarFornecedor(" + resultado[i].id + ")'/>Editar</td>";
+                valor += "<td><a onclick='RemoveFornecedor(" + resultado[i].id + ")'/>Excluir</td>";
             
                
                }
@@ -51,7 +52,7 @@ function enderecos(id) {
             console.log(resultado);
             var container = document.getElementById("container");
             var valor = "<h1>Endereços do forncedor </h1>"
-          
+            valor += "<a onclick='Cadastrar(" + id+")'>Criar Novo Endereco</a>";
             valor += "<table class='table'>"
             valor += "<thead class='thead-dark'>";
             valor += "<tr>";
@@ -92,7 +93,8 @@ function enderecos(id) {
 
 function Cadastrar(id) {
         var container = document.getElementById("container");
-        var valor = "<h1 class='titulo'>Cadastrar Endereço Fornecedor</h1>"
+    var valor = "<h1 class='titulo'>Cadastrar Endereço Fornecedor</h1>"
+       
         valor += "<div class='row' style='margin-left:45px'>"
         valor += "<div class='col-md-4'>"
         valor += "<label>Logradouro</label>"
@@ -154,6 +156,7 @@ function finalizar(id) {
         data: JSON.stringify(Enderecos, id),
         contentType: "application/json",
         success: function (resultado) {
+            enderecos(id)
         }
     });
 }
@@ -236,18 +239,83 @@ function edit(id) {
     });
 }
 
-function remove(id,resultado) {
-
-    alert(id);
+function remove(id, resultado) {
     $.ajax({
         type: "DELETE",
         accepts: "application/json",
-        url: "/api/Enderecos/" + id,
-        data: JSON.stringify({ "Id": id }),
+        url: "/api/Enderecos/" + resultado +"/"+id,
+        data: JSON.stringify({resultado,id}),
         contentType: "application/json",
         success: function (resultado) {
             window.location.reload();
         }
     });
 
+}
+
+function RemoveFornecedor(id) {
+    $.ajax({
+        type: "DELETE",
+        accepts: "application/json",
+        url: "/api/Fornecedores/"+id,
+        data: JSON.stringify({id}),
+        contentType: "application/json",
+        success: function (resultado) {
+            window.location.reload();
+        }
+    });
+}
+function EditarFornecedor(id) {
+    $.ajax({
+        type: "GET",
+        url: "/api/Fornecedores/" + id,
+        data: JSON.stringify(id),
+        success: function (resultado) {
+            var container = document.getElementById("container");
+            var valor = "<h1 class='titulo'>Editar  Fornecedor</h1>"
+            valor += "<div class='row' style='margin-left:45px'>"
+            valor += "<div class='col-md-4'>"
+            valor += " <label>Nome</label>"
+            valor += "<input type='text' id='Nome'  name='Nome' value='" + resultado.nome + "'>"
+            valor += "</div>"
+            valor += "<div class='col-md-4'>"
+            valor += "<label>CPF</label>"
+            valor += "<input type='text' id='Cpf' name='Cpf' value='" + resultado.cpf + "'>"
+            valor += "</div>" 
+            valor += "<div class='col-md-4'>"
+            valor += "<label>Cnpj</label>"
+            valor += "<input type='text' id='Cnpj' name='Cnpj' value='" + resultado.cnpj + "'>"
+            valor += "</div>" 
+            valor += "<a onclick='EditarForne(" + resultado.id + ")'>Cadastrar</a>"
+            valor += "</div>"
+            container.innerHTML = valor;
+        }
+    });
+}
+
+function EditarForne(id) {
+
+    var nome = $("#Nome").val();
+    var cpf = $("#Cpf").val();
+    var cnpj = $("#Cnpj").val();
+  
+
+    var Fornecedores = {
+        Id: id,
+        Nome: nome,
+        Cpf: cpf,
+        cnpj: cnpj    
+    };
+
+    $.ajax({
+        type: "PUT",
+        accepts: "application/json",
+        url: "/api/Fornecedores/" + id,
+        data: JSON.stringify(Fornecedores),
+        contentType: "application/json",
+        success: function (resultado) {
+
+            location.reload();
+        }
+    });
 }
