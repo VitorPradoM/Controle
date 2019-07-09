@@ -46,45 +46,58 @@ namespace Controle.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEnderecos(int id, Enderecos enderecos)
         {
-            if (id != enderecos.Id)
+            if (enderecos.Pais != "" && enderecos.Bairro != "" && enderecos.Estado != "" && enderecos.Cidade != "" && enderecos.Cep != "" && enderecos.Numero != 0)
             {
-                return BadRequest();
-            }
-
-            _context.Entry(enderecos).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EnderecosExists(id))
+                if (id != enderecos.Id)
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                _context.Entry(enderecos).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EnderecosExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return NoContent();
+            }
+            else
+            {
+                return Content("Devem ser preenchidos todos os campo obrigatórios");
+            }
         }
 
         // POST: api/Enderecos
         [HttpPost("{id}")]
         public async Task<ActionResult<Enderecos>> PostEnderecos(Enderecos enderecos,int id)
         {
-            Endereco_Fornecedor endereco_fornecedor = new Endereco_Fornecedor();
-            _context.Enderecos.Add(enderecos);
-            await _context.SaveChangesAsync();
-            endereco_fornecedor.Fornecedor_Id = id;
-            endereco_fornecedor.Endereco_Id = enderecos.Id;
-            _context.Endereco_Fornecedor.Add(endereco_fornecedor);
-            await _context.SaveChangesAsync();
+            if (enderecos.Pais !="" && enderecos.Bairro !="" && enderecos.Estado !="" && enderecos.Cidade != "" && enderecos.Cep != "" && enderecos.Numero != 0 ) {
+                Endereco_Fornecedor endereco_fornecedor = new Endereco_Fornecedor();
+                _context.Enderecos.Add(enderecos);
+                await _context.SaveChangesAsync();
+                endereco_fornecedor.Fornecedor_Id = id;
+                endereco_fornecedor.Endereco_Id = enderecos.Id;
+                _context.Endereco_Fornecedor.Add(endereco_fornecedor);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEnderecos", new { id = enderecos.Id }, enderecos);
+                return CreatedAtAction("GetEnderecos", new { id = enderecos.Id }, enderecos);
+            }
+            else
+            {
+                return Content("Todos campos pedidos devem ser preenchidos");
+            }
         }
 
         [HttpGet("BuscaEndereco/{id}")]

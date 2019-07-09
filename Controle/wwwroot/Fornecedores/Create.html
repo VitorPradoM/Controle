@@ -8,26 +8,33 @@
 </head>
 <body>
     <nav style="background-color:#343a40 !important" class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand nav" href="Contas.html">Contas</a>
+        <a class="navbar-brand nav" href="../Contas/Contas.html">Contas</a>
         <a class="navbar-brand nav" href="../Caracteristicas/Caracteristicas.html">Categorias</a>
+        <a class="navbar-brand nav" href="../Fornecedores/Fornecedores.html">Fornecedores</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
     <h1 class="titulo">Cadastrar Fornecedores </h1>
     <form enctype="multipart/form-data">
+        <div style="margin-left:600px;margin-bottom:25px">
+        <p>Tipo do Cliente</p>
+           <input onclick="fisico()"  TYPE="RADIO" NAME="OPCAO" VALUE="op1"> Fisico
+            <INPUT onclick="juridico()"  checked TYPE="RADIO" NAME="OPCAO" VALUE="op2"> Juridico
+          </div>
+      
         <div class="row" style="margin-left:25px">
             <div class="col-md-4">
                 <label>Nome</label>
                 <input type="text" id="Nome" name="Nome" value="">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" id="cnpjdiv">
                 <label>Cnpj</label>
                 <input type="text" id="Cnpj" name="Cnpj" value="">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" id="cpfdiv" hidden>
                 <label>Cpf</label>
-                <input type="text" maxlength="11" id="Cpf" name="Cpf" value="">
+                <input type="text" maxlength="20" id="Cpf" name="Cpf" value="">
             </div>
 
             <div class="col-md-4">

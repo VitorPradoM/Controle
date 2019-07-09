@@ -3,7 +3,7 @@
         type: "GET",
         url: "/api/Fornecedores",
         success: function (resultado) {
-
+            
 
             var container = document.getElementById("container");
             var valor = "<a href='Create.html'>Criar Fornecedor</a>"
@@ -202,6 +202,7 @@ function editar(id) {
             valor += "<a onclick='edit(" + resultado.id + ")'>Cadastrar</a>"
             valor += "</div>"
             container.innerHTML = valor;
+            
         }
     });
 }
@@ -278,17 +279,24 @@ function EditarFornecedor(id) {
             valor += " <label>Nome</label>"
             valor += "<input type='text' id='Nome'  name='Nome' value='" + resultado.nome + "'>"
             valor += "</div>"
-            valor += "<div class='col-md-4'>"
+            valor += "<div class='col-md-4' id='cpfdiv'>"
             valor += "<label>CPF</label>"
             valor += "<input type='text' id='Cpf' name='Cpf' value='" + resultado.cpf + "'>"
             valor += "</div>" 
-            valor += "<div class='col-md-4'>"
+            valor += "<div class='col-md-4' id='cnpjdiv'>"
             valor += "<label>Cnpj</label>"
             valor += "<input type='text' id='Cnpj' name='Cnpj' value='" + resultado.cnpj + "'>"
             valor += "</div>" 
             valor += "<a onclick='EditarForne(" + resultado.id + ")'>Cadastrar</a>"
             valor += "</div>"
             container.innerHTML = valor;
+            if (resultado.cpf == "") {
+                $("#cpfdiv")[0].hidden = true;
+                $("#cnpjdiv")[0].hidden = false;
+            } else if (resultado.cnpj == "") {
+                $("#cpfdiv")[0].hidden = false;
+                $("#cnpjdiv")[0].hidden = true;
+            }
         }
     });
 }

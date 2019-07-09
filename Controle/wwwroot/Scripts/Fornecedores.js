@@ -11,35 +11,49 @@ function Cadastra() {
     var estado = $("#Estado").val();
     var pais = $("#Pais").val();
     var cep = $("#Cep").val();
-   var Enderecos = {
-        Logradouro: logradouro,
-        Bairro: bairro,
-        Numero: numero,
-        Cidade: cidade,
-        Estado: estado,
-        Pais: pais,
-        Cep: cep
-    };
+    if (bairro != "" && numero != "" && cidade != "" && estado != "" && pais != "" && cep != "") {
+        var Enderecos = {
+            Logradouro: logradouro,
+            Bairro: bairro,
+            Numero: numero,
+            Cidade: cidade,
+            Estado: estado,
+            Pais: pais,
+            Cep: cep
+        };
 
-    Fornecedores = {
-        Nome: nome,
-        Cnpj: cnpj,
-        Cpf: cpf
-    };
-    Endereco_Fornecedor = {
-        enderecos: Enderecos,
-        fornecedores: Fornecedores
-    }
-
-
-    $.ajax({
-        type: "POST",
-        accepts: "application/json",
-        url: "/api/Fornecedores",
-        data: JSON.stringify(Endereco_Fornecedor),
-        contentType: "application/json",
-        success: function (resultado) {
-
+        Fornecedores = {
+            Nome: nome,
+            Cnpj: cnpj,
+            Cpf: cpf
+        };
+        Endereco_Fornecedor = {
+            enderecos: Enderecos,
+            fornecedores: Fornecedores
         }
-    });
+
+
+        $.ajax({
+            type: "POST",
+            accepts: "application/json",
+            url: "/api/Fornecedores",
+            data: JSON.stringify(Endereco_Fornecedor),
+            contentType: "application/json",
+            success: function (resultado) {
+
+            }
+        });
+    } else{
+        alert('Campo Obrigatorios deve ser preenchidos')
+    }
+}
+
+function fisico() {
+    $("#cpfdiv")[0].hidden = false;
+    $("#cnpjdiv")[0].hidden = true;
+}
+
+function juridico() {
+    $("#cnpjdiv")[0].hidden = false;
+    $("#cpfdiv")[0].hidden = true;
 }
