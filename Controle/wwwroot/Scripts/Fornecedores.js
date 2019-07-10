@@ -40,7 +40,7 @@ function Cadastra() {
             data: JSON.stringify(Endereco_Fornecedor),
             contentType: "application/json",
             success: function (resultado) {
-
+                location.href = "Fornecedores.html";
             }
         });
     } else{

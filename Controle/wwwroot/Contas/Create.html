@@ -11,42 +11,44 @@
         <a class="navbar-brand nav" href="../Contas/Contas.html">Contas</a>
         <a class="navbar-brand nav" href="../Caracteristicas/Caracteristicas.html">Categorias</a>
         <a class="navbar-brand nav" href="../Fornecedores/Fornecedores.html">Fornecedores</a>
+        <a class="navbar-brand nav" href="../Produtos/Produtos.html">Produtos</a>
+        <a class="navbar-brand nav" href="../Categorias_Produtos/Categorias_Produtos.html">Categorias Produtos</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
-        <h1 class="titulo">Cadastrar Contas </h1>
-        <form enctype="multipart/form-data">
-            <div  class="row" style="margin-left:25px">
-                <div class="col-md-2">
-                    <label>Descrição</label>
-                    <input type="text" id="descricao" name="descricao" value="">
-                </div>
-                <div class="col-md-2">
-                    <label>Preço</label>
-                    <input type="text" id="preco" name="preco" value="">
-                </div>
-                <div class="col-md-2" id="Caracteristica">
-                </div>
-                <div class="col-md-2">
-                    <label>Data Vencimento</label>
-                    <input type="Date" id="data_vencimento" name="data_vencimento" value="">
-                </div>
-                <div class="col-md-2">
-                    <label>Status Pagamento</label>
-                    <select id="StatusPagamento" name="StatusPagamento">
-                        <option value="Pago">Pago</option>
-                        <option value="Não Pago" selected>Não Pago</option>
-                    </select>
-                </div>
-                <div class="col-md-2" id="Produtos">
-                  </div>
+    <h1 class="titulo">Cadastrar Contas </h1>
+    <form enctype="multipart/form-data">
+        <div class="row" style="margin-left:25px">
+            <div class="col-md-2">
+                <label>Descrição</label>
+                <input type="text" id="descricao" name="descricao" value="">
             </div>
-            <div style="margin-top:45px;margin-left:35px">
-                <a class="inicial-btn" onclick="finaliza()"> Cadastrar</a>
+            <div class="col-md-2">
+                <label>Preço</label>
+                <input type="text" id="preco" name="preco" value="">
             </div>
-        </form>
-    </body>
+            <div class="col-md-2" id="Caracteristica">
+            </div>
+            <div class="col-md-2">
+                <label>Data Vencimento</label>
+                <input type="Date" id="data_vencimento" name="data_vencimento" value="">
+            </div>
+            <div class="col-md-2">
+                <label>Status Pagamento</label>
+                <select id="StatusPagamento" name="StatusPagamento">
+                    <option value="Pago">Pago</option>
+                    <option value="Não Pago" selected>Não Pago</option>
+                </select>
+            </div>
+            <div class="col-md-2" id="Produtos">
+            </div>
+        </div>
+        <div style="margin-top:45px;margin-left:35px">
+            <a class="inicial-btn" onclick="finaliza()"> Cadastrar</a>
+        </div>
+    </form>
+</body>
 </html>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
