@@ -184,26 +184,7 @@ function alterar() {
 
 function Remove(id) {
 
-    ////var geral = document.getElementById("modal");
-    ////var exclui = "<div class='modal-dialog' role='document'>"
-    ////exclui += "<div class='modal-content'>"
-    ////exclui += "<div class='modal-header'>"
-    ////exclui += "<h5 class='modal-title'>Título do modal</h5>"
-    ////exclui += "<button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>"
-    ////exclui += "<span aria-hidden='true'>&times;</span>"
-    ////exclui += "</button>"
-    ////exclui += "</div>"
-    ////exclui += "<div class='modal-body'>"
-    ////exclui += "<p>Texto do corpo do modal, é aqui.</p>"
-    ////exclui += "</div>"
-    ////exclui += "<div class='modal-footer'>"
-    ////exclui += "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>"
-    ////exclui += "<button type='button' class='btn btn-primary'>Salvar mudanças</button>"
-    ////exclui += "</div>"
-    ////exclui += "</div>"
-    ////exclui += "</div>"
 
-    geral.innerHTML = exclui;
     $.ajax({
         type: "DELETE",
         accepts: "application/json",

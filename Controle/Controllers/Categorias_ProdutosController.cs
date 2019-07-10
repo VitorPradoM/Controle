@@ -25,14 +25,14 @@ namespace Controle.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Categorias_Produtos>>> Getcategoria_produtos()
         {
-            return await _context.categoria_produtos.ToListAsync();
+            return await _context.categorias_produtos.ToListAsync();
         }
 
         // GET: api/Categorias_Produtos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Categorias_Produtos>> GetCategorias_Produtos(int id)
         {
-            var categorias_Produtos = await _context.categoria_produtos.FindAsync(id);
+            var categorias_Produtos = await _context.categorias_produtos.FindAsync(id);
 
             if (categorias_Produtos == null)
             {
@@ -76,7 +76,7 @@ namespace Controle.Controllers
         [HttpPost]
         public async Task<ActionResult<Categorias_Produtos>> PostCategorias_Produtos(Categorias_Produtos categorias_Produtos)
         {
-            _context.categoria_produtos.Add(categorias_Produtos);
+            _context.categorias_produtos.Add(categorias_Produtos);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCategorias_Produtos", new { id = categorias_Produtos.Id }, categorias_Produtos);
@@ -86,13 +86,13 @@ namespace Controle.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Categorias_Produtos>> DeleteCategorias_Produtos(int id)
         {
-            var categorias_Produtos = await _context.categoria_produtos.FindAsync(id);
+            var categorias_Produtos = await _context.categorias_produtos.FindAsync(id);
             if (categorias_Produtos == null)
             {
                 return NotFound();
             }
 
-            _context.categoria_produtos.Remove(categorias_Produtos);
+            _context.categorias_produtos.Remove(categorias_Produtos);
             await _context.SaveChangesAsync();
 
             return categorias_Produtos;
@@ -100,7 +100,7 @@ namespace Controle.Controllers
 
         private bool Categorias_ProdutosExists(int id)
         {
-            return _context.categoria_produtos.Any(e => e.Id == id);
+            return _context.categorias_produtos.Any(e => e.Id == id);
         }
     }
 }

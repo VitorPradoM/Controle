@@ -19,7 +19,7 @@ namespace Controle.Context
         public virtual DbSet<Contas> contas { get; set; }
         public virtual DbSet<Categorias> categorias { get; set; }
         public virtual DbSet<Produtos> produtos { get; set; }
-        public virtual DbSet<Categorias_Produtos> categoria_produtos { get; set; }
+        public virtual DbSet<Categorias_Produtos> categorias_produtos { get; set; }
         public virtual DbSet<Enderecos> Enderecos { get; set; }
         public virtual DbSet<Fornecedores> Fornecedores { get; set; }
         public virtual DbSet<Endereco_Fornecedor> Endereco_Fornecedor { get; set; }

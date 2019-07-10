@@ -4,7 +4,7 @@
         url: "/api/Fornecedores",
         success: function (resultado) {
             
-
+       
             var container = document.getElementById("container");
             var valor = "<a href='Create.html'>Criar Fornecedor</a>"
             valor += "<table class='table'>";           

@@ -23,13 +23,26 @@ namespace Controle.Controllers
 
         // GET: api/Produtos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Produtos>>> Getprodutos()
+        public async Task<ActionResult<List<Produtos_ViewModel>>> Getprodutos()
         {
-            return await _context.produtos.ToListAsync();
+            List<Produtos_ViewModel> produtos_viewmodel = new List<Produtos_ViewModel>();
+           
+            var produtos = await _context.produtos.ToListAsync();
+            for (int i=0;i<produtos.Count();i++)
+            {
+                Produtos_ViewModel produtos_model = new Produtos_ViewModel();
+                var nome = await _context.categorias_produtos.Where(p=>p.Id == produtos[i].Categoria_Produto_Id).ToListAsync();
+                var descricao = await _context.Fornecedores.Where(p=>p.Id == produtos[i].Fornecedor_Id).ToListAsync();
+                produtos_model.produtos = produtos[i];
+                produtos_model.Categoria_Produto = nome[0].Descricao.ToString();
+                produtos_model.Fornecedor = descricao[0].Nome.ToString();
+                produtos_viewmodel.Add(produtos_model);
+            }
+            return produtos_viewmodel;
         }
 
-        // GET: api/Produtos/5
-        [HttpGet("{id}")]
+// GET: api/Produtos/5
+[HttpGet("{id}")]
         public async Task<ActionResult<Produtos>> GetProdutos(int id)
         {
             var produtos = await _context.produtos.FindAsync(id);

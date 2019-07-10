@@ -5,7 +5,6 @@ C:\Users\Vitor\source\repos\Controle\Controle\bin\Debug\netcoreapp2.2\Controle.d
 C:\Users\Vitor\source\repos\Controle\Controle\bin\Debug\netcoreapp2.2\Controle.pdb
 C:\Users\Vitor\source\repos\Controle\Controle\bin\Debug\netcoreapp2.2\Controle.Views.dll
 C:\Users\Vitor\source\repos\Controle\Controle\bin\Debug\netcoreapp2.2\Controle.Views.pdb
-C:\Users\Vitor\source\repos\Controle\Controle\obj\Debug\netcoreapp2.2\Controle.csprojAssemblyReference.cache
 C:\Users\Vitor\source\repos\Controle\Controle\obj\Debug\netcoreapp2.2\Controle.csproj.CoreCompileInputs.cache
 C:\Users\Vitor\source\repos\Controle\Controle\obj\Debug\netcoreapp2.2\Controle.RazorAssemblyInfo.cache
 C:\Users\Vitor\source\repos\Controle\Controle\obj\Debug\netcoreapp2.2\Controle.RazorAssemblyInfo.cs
