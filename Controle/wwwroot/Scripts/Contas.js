@@ -2,9 +2,9 @@
     $.ajax({
         type: "GET",
         url: "/api/Contas",
-        success: function (resultado) {
-            console.log(resultado);
+        success: function (resultado) {          
             formatabela(resultado);
+            caracteristica();
             
         }
     });
@@ -105,6 +105,7 @@ function editar(id) {
         data: JSON.stringify(id),
         success: function (resultado) {
             // Formulario Edit Contas
+            console.log(resultado);
             data = resultado.data_Vencimento;
             var geral = document.getElementById("geral");
             var html = "<h1 class='titulo' >Editar Contas</h1>"
@@ -119,6 +120,8 @@ function editar(id) {
             html += "<input type='text' id='preco' name='preco' value='" + resultado.preco + "'>"
             html += "</div class='col-md-2'>"
             html += "<div class='col-md-2' id='Caracteristica'>"
+            html += "</div> "
+            html += "<div class='col-md-2' id='Produtos'>"
             html += "</div> "
             html += "<div class='col-md-2'>"
             html += "<label>Data Vencimento</label>"
@@ -140,6 +143,8 @@ function editar(id) {
             $("#data_vencimento")[0].value = data.split("T")[0];
             $("#StatusPagamento")[0].value = resultado.status_Pagamento;
 
+           
+            
             // Opções Categorias
             $.ajax({
                 type: "GET",
@@ -153,10 +158,50 @@ function editar(id) {
                     }
                     opcoes += "</select>";
                     Caracteristica.innerHTML = opcoes;
-
+                    produtos(resultado.produtos_Id);
                 }
             });
 
+        }
+    });
+
+    
+}
+function produtos(id) {
+    $.ajax({
+        type: "GET",
+        url: "/api/Produtos",
+        success: function (resultado) {
+            console.log(resultado);
+            var opcoes = "<label>Produtos</label>";
+            opcoes += "<select id='produtos' name='select'>";
+            opcoes += "<option value='' selected>Selecione</option>;"
+            for (var i = 0; i < resultado.length; i++) {
+                if (resultado[i].id == id) {
+                    opcoes += "<option selected value=" + resultado[i].produtos.id + ">" + resultado[i].produtos.nome + "</option>"
+                } else {
+                    opcoes += "<option  value=" + resultado[i].produtos.id + ">" + resultado[i].produtos.nome + "</option>"
+                }
+            }
+            opcoes += "</select>";
+            Produtos.innerHTML = opcoes;
+        }
+        });
+}
+function caracteristica() {
+    $.ajax({
+        type: "GET",
+        url: "/api/Categorias",
+        success: function (resultado) {
+            console.log(resultado);
+            var opcoes = "<label>Categorias</label>";
+            opcoes += "<select id='caracteristica' name='select'>";
+            opcoes += "<option value='' selected>Selecione</option>;"
+            for (var i = 0; i < resultado.length; i++) {
+                opcoes += "<option value=" + resultado[i].id + ">" + resultado[i].descricao + "</option>"
+            }
+            opcoes += "</select>";
+            Caracteristica.innerHTML = opcoes;
         }
     });
 }
@@ -167,13 +212,14 @@ function alterar() {
     var id = $("#id").val();
     var status_pagamento = $("#StatusPagamento")[0].value;
     var categoria = $("#caracteristica")[0].value
+    var produto = $("#produtos")[0].value;
     preco = preco.replace(",", ".")
-
+    console.log(produto);
     $.ajax({
         type: "PUT",
         accepts: "application/json",
         url: "/api/Contas/" + id,
-        data: JSON.stringify({ id: id, Descricao: descricao, Preco: preco, Status_Pagamento: status_pagamento, Categorias_Id: categoria, Data_Vencimento: data_vencimento }),
+        data: JSON.stringify({ id: id, Descricao: descricao, Preco: preco, Status_Pagamento: status_pagamento, Categorias_Id: categoria, Data_Vencimento: data_vencimento,Produtos_Id: produto }),
         contentType: "application/json",
         success: function (resultado) {
             window.location.reload();

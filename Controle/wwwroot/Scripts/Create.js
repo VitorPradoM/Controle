@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     caracteristica();
-  
+    produtos();
 });
 
 function caracteristica() {
@@ -20,23 +20,24 @@ function caracteristica() {
         }
     });
 }
-
 function finaliza() {
   var caracteristica =  $("#caracteristica")[0].value;
-    var descricao = $("#descricao").val();
-    var preco = $("#preco").val();
+  var descricao = $("#descricao").val();
+  var preco = $("#preco").val();
   var data_vencimento = $("#data_vencimento").val();
-    var status_pagamento = $("#StatusPagamento")[0].value;
-    preco = preco.replace(",", ".")
+  var status_pagamento = $("#StatusPagamento")[0].value;
+  var produto = $("#produtos")[0].value;
+   preco = preco.replace(",", ".")
     
     var Contas = {
         Categorias_Id: caracteristica,
         Preco: preco,
         Descricao: descricao,
         Status_Pagamento: status_pagamento,
-        Data_Vencimento: data_vencimento
+        Data_Vencimento: data_vencimento,
+        Produtos_Id: produto
     }
-       
+     
         $.ajax({
             type: "POST",
             accepts: "application/json",
@@ -49,3 +50,20 @@ function finaliza() {
         });
     }
   
+function produtos() {
+    $.ajax({
+        type: "GET",
+        url: "/api/Produtos",
+        success: function (resultado) {
+            console.log(resultado);
+            var opcoes = "<label>Produtos</label>";
+            opcoes += "<select id='produtos' name='select'>";
+            opcoes += "<option value='' selected>Selecione</option>;"
+            for (var i = 0; i < resultado.length; i++) {
+                opcoes += "<option value=" + resultado[i].id + ">" + resultado[i].produtos.nome + "</option>"
+            }
+            opcoes += "</select>";
+            Produtos.innerHTML = opcoes;
+        }
+        });
+}
