@@ -37,7 +37,7 @@ function finaliza() {
         Data_Vencimento: data_vencimento,
         Produtos_Id: produto
     }
-     
+     console.log(Contas)
         $.ajax({
             type: "POST",
             accepts: "application/json",
@@ -60,7 +60,8 @@ function produtos() {
             opcoes += "<select id='produtos' name='select'>";
             opcoes += "<option value='' selected>Selecione</option>;"
             for (var i = 0; i < resultado.length; i++) {
-                opcoes += "<option value=" + resultado[i].id + ">" + resultado[i].produtos.nome + "</option>"
+                console.log(resultado);
+                opcoes += "<option value=" + resultado[i].produtos.id + ">" + resultado[i].produtos.nome + "</option>"
             }
             opcoes += "</select>";
             Produtos.innerHTML = opcoes;

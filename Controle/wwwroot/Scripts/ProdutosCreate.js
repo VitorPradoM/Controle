@@ -53,7 +53,7 @@ function Cadastrar() {
         Fornecedor_Id: id_fornecedor,
         Categoria_Produto_Id: categoria_produto_id
     };
-
+    console.log(produtos);
     $.ajax({
         type: "POST",
         accepts: "application/json",
